@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/iot_ui_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.android.codelabs.navigation.MainFragment"
+        android:label="@string/main_menu"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.android.codelabs.navigation.ProfileFragment"
+        android:label="@string/profile_menu"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/devicesFragment"
+        android:name="com.example.android.codelabs.navigation.DevicesFragment"
+        android:label="@string/devices_menu"
+        tools:layout="@layout/fragment_devices" >
+        <action
+            android:id="@+id/action_devicesFragment_to_deviceDetailFragment"
+            app:destination="@id/iot_ui_devices_navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectionsFragment"
+        android:name="com.example.android.codelabs.navigation.ConnectionsFragment"
+        android:label="@string/connections_menu"
+        tools:layout="@layout/fragment_connections" />
+    <navigation
+        android:id="@+id/iot_ui_devices_navigation"
+        app:startDestination="@id/deviceDetailFragment" >
+        <fragment
+            android:id="@+id/deviceDetailFragment"
+            android:name="com.example.android.codelabs.navigation.DeviceDetailFragment"
+            android:label="fragment_device_detail"
+            tools:layout="@layout/fragment_device_detail">
+            <action
+                android:id="@+id/action_deviceDetailFragment_to_deviceFunctionFragment2"
+                app:destination="@id/deviceFunctionFragment" />
+            <action
+                android:id="@+id/action_deviceDetailFragment_to_deviceSettingFragment2"
+                app:destination="@id/deviceSettingFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/deviceFunctionFragment"
+            android:name="com.example.android.codelabs.navigation.DeviceFunctionFragment"
+            android:label="fragment_device_function"
+            tools:layout="@layout/fragment_device_function" />
+        <fragment
+            android:id="@+id/deviceSettingFragment"
+            android:name="com.example.android.codelabs.navigation.DeviceSettingFragment"
+            android:label="fragment_device_setting"
+            tools:layout="@layout/fragment_device_setting" />
+    </navigation>
+</navigation>
