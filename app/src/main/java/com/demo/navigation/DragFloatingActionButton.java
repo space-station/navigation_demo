@@ -1,4 +1,4 @@
-package com.example.android.codelabs.navigation;
+package com.demo.navigation;
 
 import android.content.Context;
 import android.os.Parcel;

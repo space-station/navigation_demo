@@ -31,6 +31,9 @@
     <string name="msm_menu">短信</string>
     <string name="phone_menu">电话</string>
 
+    <string name="msm_setting_menu">短信设置</string>
+    <string name="phone_setting_menu">电话设置</string>
+
     <string name="scan_device">扫一扫</string>
 
     <!-- Screen strings -->

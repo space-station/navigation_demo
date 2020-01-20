@@ -7,52 +7,72 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.android.codelabs.navigation.MainFragment"
+        android:name="com.demo.navigation.MainFragment"
         android:label="@string/main_menu"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.android.codelabs.navigation.ProfileFragment"
+        android:name="com.demo.navigation.ProfileFragment"
         android:label="@string/profile_menu"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/devicesFragment"
-        android:name="com.example.android.codelabs.navigation.DevicesFragment"
+        android:name="com.demo.navigation.DevicesFragment"
         android:label="@string/devices_menu"
         tools:layout="@layout/fragment_devices" >
         <action
             android:id="@+id/action_devicesFragment_to_deviceDetailFragment"
-            app:destination="@id/iot_ui_devices_navigation" />
+            app:destination="@id/deviceDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/connectionsFragment"
-        android:name="com.example.android.codelabs.navigation.ConnectionsFragment"
+        android:name="com.demo.navigation.ConnectionsFragment"
         android:label="@string/connections_menu"
         tools:layout="@layout/fragment_connections" />
-    <navigation
+<!--    <navigation
         android:id="@+id/iot_ui_devices_navigation"
-        app:startDestination="@id/deviceDetailFragment" >
+        app:startDestination="@id/deviceDetailFragment" >-->
         <fragment
             android:id="@+id/deviceDetailFragment"
-            android:name="com.example.android.codelabs.navigation.DeviceDetailFragment"
+            android:name="com.demo.navigation.DeviceDetailFragment"
             android:label="fragment_device_detail"
             tools:layout="@layout/fragment_device_detail">
             <action
                 android:id="@+id/action_deviceDetailFragment_to_deviceFunctionFragment2"
-                app:destination="@id/deviceFunctionFragment" />
+                app:destination="@id/deviceFunctionFragment"
+                app:popUpTo="@+id/deviceFunctionFragment"
+                app:popUpToInclusive="true"
+                />
             <action
                 android:id="@+id/action_deviceDetailFragment_to_deviceSettingFragment2"
-                app:destination="@id/deviceSettingFragment" />
+                app:destination="@id/deviceSettingFragment"
+                app:popUpTo="@+id/deviceSettingFragment"
+                app:popUpToInclusive="true"
+                />
         </fragment>
         <fragment
             android:id="@+id/deviceFunctionFragment"
-            android:name="com.example.android.codelabs.navigation.DeviceFunctionFragment"
+            android:name="com.demo.navigation.DeviceFunctionFragment"
             android:label="fragment_device_function"
-            tools:layout="@layout/fragment_device_function" />
+            tools:layout="@layout/fragment_device_function" >
+            <action
+                android:id="@+id/action_deviceFunctionFragment_to_deviceSettingFragment"
+                app:destination="@id/deviceSettingFragment" />
+        </fragment>
         <fragment
             android:id="@+id/deviceSettingFragment"
-            android:name="com.example.android.codelabs.navigation.DeviceSettingFragment"
+            android:name="com.demo.navigation.DeviceSettingFragment"
             android:label="fragment_device_setting"
             tools:layout="@layout/fragment_device_setting" />
-    </navigation>
+<!--    </navigation>-->
+    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+    <action android:id="@+id/action_global_devicesFragment"
+        app:destination="@id/devicesFragment"
+        app:popUpTo="@+id/deviceSettingFragment"
+        app:popUpToInclusive="true"
+        />
+    <action android:id="@+id/action_global_deviceSettingFragment" app:destination="@id/deviceSettingFragment"/>
+    <action android:id="@+id/action_global_deviceFunctionFragment" app:destination="@id/deviceFunctionFragment"/>
+    <action android:id="@+id/action_global_deviceDetailFragment" app:destination="@id/deviceDetailFragment"/>
+
 </navigation>

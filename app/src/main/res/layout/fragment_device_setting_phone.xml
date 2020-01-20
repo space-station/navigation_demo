@@ -4,6 +4,12 @@
     android:id="@+id/content_host"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeviceFunctionFragment">
+    tools:context=".PhoneSettingFragment">
+
+    <TextView
+        android:id="@+id/device_function_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/phone_setting_menu" />
 
 </FrameLayout>

@@ -15,14 +15,12 @@
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId 'com.example.android.codelabs.navigation'
-        minSdkVersion 21
+        applicationId 'com.demo.navigation'
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -48,17 +46,9 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
-
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerVersion"

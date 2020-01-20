@@ -1,26 +1,16 @@
-package com.example.android.codelabs.navigation;
+package com.demo.navigation;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link //DeviceDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DeviceDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DeviceDetailFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,8 +22,6 @@ public class DeviceDetailFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-//    private OnFragmentInteractionListener mListener;
 
     public DeviceDetailFragment() {
         // Required empty public constructor
@@ -65,7 +53,20 @@ public class DeviceDetailFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mViewModel = ViewModelProviders.of(getActivity()).get(IotSharedViewModel.class);
+        initBack();
+    }
 
+    private void initBack(){
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Navigation.findNavController(getView()).navigate(R.id.action_global_devicesFragment);
+
+            }
+        };
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
@@ -78,16 +79,12 @@ public class DeviceDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        ((IotUIDemoActivity)getActivity()).changeToDeviceBottom();
-//        ((IotUIDemoActivity)getActivity()).setDeviceBottomBottomMain(1);
         Button button = getView().findViewById(R.id.go_message);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mViewModel.setTargetDeviceFunction(IotSharedViewModel.SMS);
+                mViewModel.setCurrentDeviceFunction(IotSharedViewModel.SMS);
                 Navigation.findNavController(v).navigate(R.id.action_deviceDetailFragment_to_deviceFunctionFragment2);
-                //NavigationUI.findNavController().navigate(R.id.flow_step_one_dest, null)
             }
         });
 
@@ -95,52 +92,9 @@ public class DeviceDetailFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mViewModel.setTargetDeviceFunction(IotSharedViewModel.PHONE);
+                mViewModel.setCurrentDeviceFunction(IotSharedViewModel.PHONE);
                 Navigation.findNavController(v).navigate(R.id.action_deviceDetailFragment_to_deviceFunctionFragment2);
-                //Navigation.findNavController(v).navigate(R.id.action_deviceDetailFragment_to_deviceSettingFragment2);
-
-                //NavigationUI.findNavController().navigate(R.id.flow_step_one_dest, null)
             }
         });
     }
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-/*        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }*/
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-//        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
 }

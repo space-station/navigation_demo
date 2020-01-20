@@ -38,22 +38,4 @@
         android:visible="true"
         />
 
-<!--    <item
-        android:id="@id/deviceDetailFragment"
-        android:icon="@drawable/ic_android"
-        android:title="@string/devices_menu"
-        android:visible="false"
-        />
-    <item
-        android:id="@id/deviceFunctionFragment"
-        android:icon="@drawable/ic_android"
-        android:title="@string/function_menu"
-        android:visible="false"
-        />
-    <item
-        android:id="@id/deviceSettingFragment"
-        android:icon="@drawable/ic_android"
-        android:title="@string/setting_menu"
-        android:visible="false"
-        />-->
 </menu>

@@ -53,7 +53,7 @@
                 android:layout_gravity="start"
                 app:menu="@menu/nav_drawer_menu" />-->
 
-        <com.example.android.codelabs.navigation.DragFloatingActionButton
+        <com.demo.navigation.DragFloatingActionButton
             android:id="@+id/connect_chk_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
             android:visibility="gone"
+            android:layout_gravity="bottom"
             app:menu="@menu/iot_device_bottom_nav_menu" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -79,6 +80,7 @@
             android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
             android:visibility="visible"
+            android:layout_gravity="bottom"
             app:menu="@menu/iot_bottom_nav_menu" />
 
 
