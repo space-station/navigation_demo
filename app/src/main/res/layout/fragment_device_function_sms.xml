@@ -9,5 +9,5 @@
         android:id="@+id/device_function_msg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/msm_menu" />
+        android:text="@string/msm_data" />
 </FrameLayout>

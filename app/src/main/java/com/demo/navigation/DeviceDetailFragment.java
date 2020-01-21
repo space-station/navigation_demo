@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -53,20 +52,6 @@ public class DeviceDetailFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mViewModel = ViewModelProviders.of(getActivity()).get(IotSharedViewModel.class);
-        initBack();
-    }
-
-    private void initBack(){
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button event
-                Navigation.findNavController(getView()).navigate(R.id.action_global_devicesFragment);
-
-            }
-        };
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
@@ -84,7 +69,7 @@ public class DeviceDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mViewModel.setCurrentDeviceFunction(IotSharedViewModel.SMS);
-                Navigation.findNavController(v).navigate(R.id.action_deviceDetailFragment_to_deviceFunctionFragment2);
+                Navigation.findNavController(v).navigate(R.id.action_to_deviceFunctionFragment);
             }
         });
 
@@ -93,7 +78,7 @@ public class DeviceDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mViewModel.setCurrentDeviceFunction(IotSharedViewModel.PHONE);
-                Navigation.findNavController(v).navigate(R.id.action_deviceDetailFragment_to_deviceFunctionFragment2);
+                Navigation.findNavController(v).navigate(R.id.action_to_deviceFunctionFragment);
             }
         });
     }

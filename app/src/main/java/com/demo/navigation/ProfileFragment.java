@@ -26,8 +26,6 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-//    private OnFragmentInteractionListener mListener;
-
     public ProfileFragment() {
         // Required empty public constructor
     }

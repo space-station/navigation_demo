@@ -19,6 +19,5 @@ public class SMSSettingFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d("iot","sms setting fragment.");
-
     }
 }

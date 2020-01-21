@@ -16,7 +16,7 @@
     android:id="@+id/iot_ui_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.codelabs.navigation.IotUIDemoActivity">
+    tools:context=".IotUIDemoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,13 +46,6 @@
                 app:navGraph="@navigation/iot_ui_navigation" />
         </LinearLayout>
 
-        <!--    <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                app:menu="@menu/nav_drawer_menu" />-->
-
         <com.demo.navigation.DragFloatingActionButton
             android:id="@+id/connect_chk_btn"
             android:layout_width="wrap_content"
@@ -64,7 +57,6 @@
             android:src="@android:drawable/ic_menu_add"
             app:elevation="3dp" />
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/iot_ui_device_bottom_nav"
             android:layout_width="match_parent"
@@ -72,7 +64,7 @@
             android:background="?android:attr/windowBackground"
             android:visibility="gone"
             android:layout_gravity="bottom"
-            app:menu="@menu/iot_device_bottom_nav_menu" />
+            app:menu="@menu/iot_device_detail_nav_menu" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/iot_ui_bottom_nav"
@@ -83,7 +75,6 @@
             android:layout_gravity="bottom"
             app:menu="@menu/iot_bottom_nav_menu" />
 
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -92,6 +83,5 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

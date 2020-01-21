@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -60,19 +59,6 @@ public class DevicesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        initBack();
-    }
-
-    private void initBack(){
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button event
-                Navigation.findNavController(getView()).navigate(R.id.action_global_mainFragment);
-            }
-        };
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
@@ -90,7 +76,7 @@ public class DevicesFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_devicesFragment_to_deviceDetailFragment);
+                Navigation.findNavController(v).navigate(R.id.action_to_deviceDetailFragment);
             }
         });
     }

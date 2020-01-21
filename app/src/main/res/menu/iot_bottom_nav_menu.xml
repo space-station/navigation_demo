@@ -20,7 +20,7 @@
         />
 
     <item
-        android:id="@id/devicesFragment"
+        android:id="@id/iot_devices_graph"
         android:icon="@drawable/ic_android"
         android:title="@string/devices_menu"
         android:visible="true"

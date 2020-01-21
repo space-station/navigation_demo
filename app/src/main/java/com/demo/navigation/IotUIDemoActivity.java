@@ -47,19 +47,14 @@ public class IotUIDemoActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         //drawer layout
         drawerLayout = findViewById(R.id.iot_ui_drawer_layout);
-
-
 
         appBarConfiguration =
                 new AppBarConfiguration.Builder(navController.getGraph())
                         .setDrawerLayout(drawerLayout)
                         .build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
-
-        //NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration);
 
         //main bottom bar绑定
         mainBottom = findViewById(R.id.iot_ui_bottom_nav);
@@ -68,6 +63,28 @@ public class IotUIDemoActivity extends AppCompatActivity {
         //device bottom绑定
         deviceBottom = findViewById(R.id.iot_ui_device_bottom_nav);
         NavigationUI.setupWithNavController(deviceBottom, navController);
+        deviceBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                boolean ret = true;
+                switch (id) {
+                    case R.id.deviceFunctionFragment:
+                        navController.navigate(R.id.action_to_deviceFunctionFragment);
+                        break;
+                    case R.id.deviceSettingFragment:
+                        navController.navigate(R.id.action_to_deviceSettingFragment);
+                        break;
+                    case R.id.deviceDetailFragment:
+                        navController.navigate(R.id.action_to_deviceDetailFragment);
+                        break;
+                    default:
+                        ret = false;
+                        break;
+                }
+                return ret;
+            }
+        });
 
         //关联导航图
         NavigationView navView = findViewById(R.id.iot_ui_nav_view);
@@ -115,15 +132,11 @@ public class IotUIDemoActivity extends AppCompatActivity {
 
             }
         });
-
-        setBackBtnOnClickNav();
     }
 
     public void showMainBottomMenu() {
-
         mainBottom.setVisibility(View.VISIBLE);
         deviceBottom.setVisibility(View.GONE);
-
         mViewModel.setCurrentDeviceFunction(0);
     }
 
@@ -134,13 +147,7 @@ public class IotUIDemoActivity extends AppCompatActivity {
         setting.setEnabled(enable);
     }
 
-    int lastFunctionId = -1;
     public void showDeviceBottomMenu(int funcId) {
-        if(lastFunctionId != funcId) {
-            Log.d(TAG, "showDeviceBottomMenu, funcId == " + funcId);
-            lastFunctionId = funcId;
-        }
-
         if(deviceBottom.getVisibility() != View.VISIBLE) {
             deviceBottom.setVisibility(View.VISIBLE);
             mainBottom.setVisibility(View.GONE);
@@ -160,57 +167,11 @@ public class IotUIDemoActivity extends AppCompatActivity {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.d("iot","select id="+item.getItemId());
-        switch (item.getItemId()){
-            case R.id.deviceDetailFragment:
-                Navigation.findNavController(item.getActionView()).navigate(R.id.action_global_deviceDetailFragment);
-                break;
-            case R.id.deviceFunctionFragment:
-            Navigation.findNavController(item.getActionView()).navigate(R.id.action_global_deviceFunctionFragment);
-                break;
-            case R.id.deviceSettingFragment:
-                Navigation.findNavController(item.getActionView()).navigate(R.id.action_global_deviceSettingFragment);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void setBackBtnOnClickNav(){
-        //可以给导航按钮设置点击事件
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("iot","v == "+v.getId());
-                if(navController.getCurrentDestination() != null
-                && (navController.getCurrentDestination().getId() == R.id.deviceFunctionFragment
-                    ||navController.getCurrentDestination().getId() == R.id.deviceSettingFragment
-                    ||navController.getCurrentDestination().getId() == R.id.deviceDetailFragment)){
-                    Log.d("iot","else navigation......go devices");
-                    navController.navigate(R.id.action_global_devicesFragment);
-                }else if(navController.getCurrentDestination() != null
-                        && (navController.getCurrentDestination().getId() == R.id.devicesFragment
-                        ||navController.getCurrentDestination().getId() == R.id.profileFragment
-                        ||navController.getCurrentDestination().getId() == R.id.connectionsFragment)){
-                    Log.d("iot","else navigation......go main");
-                    navController.navigate(R.id.action_global_mainFragment);
-                }else if(navController.getCurrentDestination() != null
-                        && (navController.getCurrentDestination().getId() == R.id.mainFragment)){
-                    Log.d("iot","else navigation......open drawer.");
-                    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                        drawerLayout.closeDrawer(Gravity.LEFT);
-                    }else{
-                        drawerLayout.openDrawer(Gravity.LEFT);
-                    }
-                }else{
-                    Log.d("iot","pop back stack.");
-                    navController.popBackStack();
-                }
-
-            }
-        });
-    }
-
+//    Handle drawer in onBackPressed
+//    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+//        drawerLayout.closeDrawer(Gravity.LEFT);
+//    }else{
+//        drawerLayout.openDrawer(Gravity.LEFT);
+//    }
 
 }

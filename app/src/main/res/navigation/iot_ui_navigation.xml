@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/iot_ui_navigation"
+    android:id="@+id/iot_ui_graph"
     app:startDestination="@id/mainFragment">
 
     <fragment
@@ -10,69 +10,61 @@
         android:name="com.demo.navigation.MainFragment"
         android:label="@string/main_menu"
         tools:layout="@layout/fragment_main" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.demo.navigation.ProfileFragment"
-        android:label="@string/profile_menu"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/devicesFragment"
-        android:name="com.demo.navigation.DevicesFragment"
-        android:label="@string/devices_menu"
-        tools:layout="@layout/fragment_devices" >
-        <action
-            android:id="@+id/action_devicesFragment_to_deviceDetailFragment"
-            app:destination="@id/deviceDetailFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/connectionsFragment"
         android:name="com.demo.navigation.ConnectionsFragment"
         android:label="@string/connections_menu"
         tools:layout="@layout/fragment_connections" />
-<!--    <navigation
-        android:id="@+id/iot_ui_devices_navigation"
-        app:startDestination="@id/deviceDetailFragment" >-->
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.demo.navigation.ProfileFragment"
+        android:label="@string/profile_menu"
+        tools:layout="@layout/fragment_profile" />
+
+    <navigation
+        android:id="@+id/iot_devices_graph"
+        app:startDestination="@id/devicesFragment">
+
+        <action
+            android:id="@+id/action_pop_out_of_devices_graph"
+            app:popUpTo="@id/iot_devices_graph"
+            app:popUpToInclusive="true" />
+
+        <fragment
+            android:id="@+id/devicesFragment"
+            android:name="com.demo.navigation.DevicesFragment"
+            android:label="@string/devices_menu"
+            tools:layout="@layout/fragment_devices" />
         <fragment
             android:id="@+id/deviceDetailFragment"
             android:name="com.demo.navigation.DeviceDetailFragment"
-            android:label="fragment_device_detail"
-            tools:layout="@layout/fragment_device_detail">
-            <action
-                android:id="@+id/action_deviceDetailFragment_to_deviceFunctionFragment2"
-                app:destination="@id/deviceFunctionFragment"
-                app:popUpTo="@+id/deviceFunctionFragment"
-                app:popUpToInclusive="true"
-                />
-            <action
-                android:id="@+id/action_deviceDetailFragment_to_deviceSettingFragment2"
-                app:destination="@id/deviceSettingFragment"
-                app:popUpTo="@+id/deviceSettingFragment"
-                app:popUpToInclusive="true"
-                />
-        </fragment>
+            android:label="@string/detail_menu"
+            tools:layout="@layout/fragment_device_detail" />
         <fragment
             android:id="@+id/deviceFunctionFragment"
-            android:name="com.demo.navigation.DeviceFunctionFragment"
-            android:label="fragment_device_function"
-            tools:layout="@layout/fragment_device_function" >
-            <action
-                android:id="@+id/action_deviceFunctionFragment_to_deviceSettingFragment"
-                app:destination="@id/deviceSettingFragment" />
-        </fragment>
+            android:name="com.demo.navigation.DeviceDataFragment"
+            android:label="@string/data_menu"
+            tools:layout="@layout/fragment_device_function" />
         <fragment
             android:id="@+id/deviceSettingFragment"
             android:name="com.demo.navigation.DeviceSettingFragment"
-            android:label="fragment_device_setting"
+            android:label="@string/setting_menu"
             tools:layout="@layout/fragment_device_setting" />
-<!--    </navigation>-->
-    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
-    <action android:id="@+id/action_global_devicesFragment"
-        app:destination="@id/devicesFragment"
-        app:popUpTo="@+id/deviceSettingFragment"
-        app:popUpToInclusive="true"
-        />
-    <action android:id="@+id/action_global_deviceSettingFragment" app:destination="@id/deviceSettingFragment"/>
-    <action android:id="@+id/action_global_deviceFunctionFragment" app:destination="@id/deviceFunctionFragment"/>
-    <action android:id="@+id/action_global_deviceDetailFragment" app:destination="@id/deviceDetailFragment"/>
 
+        <action
+            android:id="@+id/action_to_deviceDetailFragment"
+            app:destination="@id/deviceDetailFragment"
+            app:popUpTo="@+id/devicesFragment" />
+        <action
+            android:id="@+id/action_to_deviceFunctionFragment"
+            app:destination="@id/deviceFunctionFragment"
+            app:popUpTo="@+id/devicesFragment" />
+        <action
+            android:id="@+id/action_to_deviceSettingFragment"
+            app:destination="@id/deviceSettingFragment"
+            app:popUpTo="@+id/devicesFragment" />
+
+    </navigation>
 </navigation>

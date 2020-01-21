@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
 
 /**
@@ -64,26 +62,12 @@ public class DeviceSettingFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        initBack();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(IotSharedViewModel.class);
-    }
-
-    private void initBack(){
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button event
-                Navigation.findNavController(getView()).navigate(R.id.action_global_devicesFragment);
-
-            }
-        };
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
