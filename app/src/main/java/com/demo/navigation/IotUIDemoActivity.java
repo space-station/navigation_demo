@@ -111,7 +111,7 @@ public class IotUIDemoActivity extends AppCompatActivity {
             public void onDestinationChanged(@NonNull NavController controller,
                                              @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 int destId = destination.getId();
-                switch(destId){
+                switch (destId) {
                     case R.id.mainFragment:
                     case R.id.devicesFragment:
                     case R.id.connectionsFragment:
@@ -140,7 +140,12 @@ public class IotUIDemoActivity extends AppCompatActivity {
         mViewModel.setCurrentDeviceFunction(0);
     }
 
-    private void enableDeviceBottom(boolean enable){
+    private void enableDeviceBottom(boolean enable) {
+        if(!enable){
+            if(mViewModel.getCurrentDeviceFunction() > 0){
+                return;
+            }
+        }
         View function = findViewById(R.id.deviceFunctionFragment);
         View setting = findViewById(R.id.deviceSettingFragment);
         function.setEnabled(enable);
@@ -148,7 +153,7 @@ public class IotUIDemoActivity extends AppCompatActivity {
     }
 
     public void showDeviceBottomMenu(int funcId) {
-        if(deviceBottom.getVisibility() != View.VISIBLE) {
+        if (deviceBottom.getVisibility() != View.VISIBLE) {
             deviceBottom.setVisibility(View.VISIBLE);
             mainBottom.setVisibility(View.GONE);
         }
@@ -156,22 +161,27 @@ public class IotUIDemoActivity extends AppCompatActivity {
 
     @Override
     public boolean onNavigateUp() {
-        Log.d("iot","on navigation up ss================ ");
+        Log.d("iot", "on navigation up ss================ ");
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onNavigateUp();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        Log.d("iot","on support navigation up ================ ");
+        Log.d("iot", "on support navigation up ================ ");
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
-//    Handle drawer in onBackPressed
-//    if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-//        drawerLayout.closeDrawer(Gravity.LEFT);
-//    }else{
-//        drawerLayout.openDrawer(Gravity.LEFT);
-//    }
+    //Handle drawer in onBackPressed
+
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }

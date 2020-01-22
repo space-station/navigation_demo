@@ -7,7 +7,7 @@ public class IotSharedViewModel extends ViewModel {
     public static final int SMS = 1;
     public static final int PHONE = 2;
 
-    private int mCurrentDeviceFunction = 1;
+    private int mCurrentDeviceFunction = 0;
 
     public int getCurrentDeviceFunction() {
 //        Log.d("iot","get fun==="+mCurrentDeviceFunction);
